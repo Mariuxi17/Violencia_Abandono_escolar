@@ -16,6 +16,7 @@ make149: true
 header-includes:
   - \usepackage{caption}
   - \usepackage{longtable}
+  - \usepackage{subfig}
   #- \usepackage[spanish]{babel}
 ---
 
@@ -127,6 +128,21 @@ test = base_combinada_1 %>%
 
 - Data administrativa poco explorada
 
+\begin{figure}
+\centering
+\parbox{5cm}{
+\includegraphics[width=5cm]{C:/Users/cristiand.carrion/OneDrive - MINISTERIO DE EDUCACIÓN/Actividades_CCarrion/papers/1AbanonoViolencia/5Documentacion/Pres/Tasa_abandono_año_image.png}
+\caption{Tasa de abandono por año.}
+\label{fig:tasa_abandono_parbox}}
+\qquad
+\begin{minipage}{5cm}
+\includegraphics[width=5cm]{C:/Users/cristiand.carrion/OneDrive - MINISTERIO DE EDUCACIÓN/Actividades_CCarrion/papers/1AbanonoViolencia/5Documentacion/Pres/Casos_violencia_image.png}
+\caption{Casos de violencia.}
+\label{fig:casos_violencia_minipage}
+\end{minipage}
+\end{figure}
+
+
 # Datos
 
 ```{r tabsum, eval=TRUE, echo=FALSE, tidy = TRUE, size="small", cache=TRUE, results="asis", warning=F}
@@ -139,9 +155,9 @@ tab1 <- tbl_summary(test %>% ungroup() %>% dplyr::select(Abandono,D),
 
 **Fuentes de datos**
 
-- REDEVI: Registro de Violencia Sexual en instituciones educativas (2014-2022).
+- REDEVI: Registro de Violencia Sexual en instituciones educativas desde el 2014al 2022 (21.235 víctimas, 4.120 IE).
 
-- AMIE: Archivo Maestro de Instituciones Educativas
+- AMIE: Archivo Maestro de Instituciones Educativas (154.576 registros, 20.994 IE)
   
 \begin{table}[]
 \caption {Estadística descriptiva} \label{tab:title} 
@@ -157,6 +173,8 @@ N Registros & 117,928 &     36,648 \\ \hline
 
 \begin{block}{}
 Registros administrativos del Ministerio de Educación - Panel desvalanceado
+
+https://educacion.gob.ec/datos-abiertos/
 \end{block}
 
 # Metodología
