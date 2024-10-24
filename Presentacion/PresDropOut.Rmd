@@ -1,7 +1,7 @@
 ---
 title: "The Impact of Sexual Violence on School Dropout: Evidence from Educational Institutions in Ecuador"
 subtitle: "El impacto de la violencia sexual en el abandono escolar: Evidencia para las instituciones educativas del Ecuador"
-author: "Cristian Carrión-Cauja, Juan Minchalo, Mariuxi Gualán, Tannya Mainato, Tania Chapa, Kattya Guerrero"
+author: "Cristian Carrión-Cauja, Juan Minchalo, Mariuxi Gualán, Tannya Mainato, Tania Chapa and Kattya Guerrero"
 institute: "YRF"
 date: "2024-10-22"
 fontsize: 10pt
@@ -108,13 +108,14 @@ test = base_combinada_1 %>%
 # Introducción
 
 - **Problema**: La violencia sexual afecta el bienestar físico y psicológico de las víctimas, y también impacta gravemente su trayectoria educativa.
+  + 1 de cada 5 mujeres y 1 de cada 13 varones han sufrido abuso sexual durante su infancia s (UNICEF, 2016).
 
 - **Impacto**: Las víctimas de violencia sexual tienen una mayor probabilidad de abandonar la escuela, perpetuando la pobreza y la desigualdad.
+  + Estudios de Estados Unidos, Uganda y Etiopía, la violencia sexual está directamente relacionada con mayores tasas de abandono escolar (Beyene et al., 2021; Mieszczanski, 2018).
 
-- **Objetivo del estudio**: Analizar cómo la violencia sexual en instituciones educativas en Ecuador influye en el número de abandonos escolares.
+- **Objetivo**: Analizar cómo la violencia sexual en instituciones educativas en Ecuador influye en el número de abandonos escolares.
 
-
-# Motivación
+# Interés
 
 - **Relevancia social**: La educación es clave para el desarrollo económico y social, pero la violencia sexual interrumpe esta oportunidad.
 
@@ -155,18 +156,19 @@ N Registros & 117,928 &     36,648 \\ \hline
 
 
 \begin{block}{}
-Registros administrativos del Ministerio de Educación 
+Registros administrativos del Ministerio de Educación - Panel desvalanceado
 \end{block}
 
 # Metodología
 
 Regresión simple para medir el impacto de la violencia sexual en los abandonos escolares.
 
-$$y_i = \beta_0 + \beta_1D_i+ \epsilon_i$$
+$$y_i = \beta_0 + \beta_1D_i + \beta_1q_{i} + \epsilon_i$$
 Donde:
 
-- $y_{it}$: Número de abandonos en la institución $i$ para el tiempo $t$
+- $y_{it}$: Número de abandonos en la institución $i$ para el año lectivo $t$
 - $D_{it}$: Dummie que toma el valor 1 si la institución $i$ ha reportado casos de violencia sexual, y 0 si no ha reportado.
+- $q_{i}$: Dummies de tiempo
 - $\epsilon_{it}$: Término de error, que captura factores no observados
 
 # Resultados
@@ -195,7 +197,7 @@ tab_reg = tab_reg[c(-11:-26)]
 tab_reg = tab_reg[-9]
 tab_reg = tab_reg[-11:-13]
 tab_reg = c(tab_reg[a <- 1:9], hline, tab_reg[-a])
-tab_reg = c(tab_reg[a <- 1:10], "\\textit{Efectos Fijos} &  \\\\", tab_reg[-a])
+tab_reg = c(tab_reg[a <- 1:10], "\\textit{Variables de Control} &  \\\\", tab_reg[-a])
 tab_reg = c(tab_reg[a <- 1:11], "\\~~ Tiempo & Si \\\\", tab_reg[-a])
 tab_reg = c(tab_reg[a <- 1:12], hline, tab_reg[-a])
 tab_reg = c(tab_reg[a <- 1:13], glue::glue("N Instituciones & {n_instituciones} \\\\"), tab_reg[-a])
@@ -206,7 +208,6 @@ cat(tab_reg, sep = "\n")
 ```
 
 Las IE que experimentaron violencia tienen en promedio 12.18 más abandonos que las instituciones sin violencia sexual, ceteris paribus.
-
 
 
 # Conclusiones
@@ -222,7 +223,13 @@ Las IE que experimentaron violencia tienen en promedio 12.18 más abandonos que 
 
 # Bibliografía
 
-Campolieti, M., Fang, T., & Gunderson, M. (2010). Labour market outcomes and skill acquisition of high school dropouts. *Journal of Labor Research, 31(1)*, 39–52. doi:10.1007/s121
 
+- Beyene, A. S., Chojenta, C. L., & Loxton, D. J. (2021). Consequences of gender-based violence on female high school students in eastern Ethiopia. *African Journal of Reproductive Health, 25(4)*, Article 4. https://www.ajrh.info/index.php/ajrh/article/view/2856
+
+- Campolieti, M., Fang, T., & Gunderson, M. (2010). Labour market outcomes and skill acquisition of high school dropouts. *Journal of Labor Research, 31(1)*, 39–52. doi:10.1007/s121
+
+- Mieszczanski, E. (2018). Schooling Silence: Sexual Harassment and its Presence and Perception at Uganda’s Universities and Secondary Schools. *Independent Study Project (ISP) Collection*. https://digitalcollections.sit.edu/isp_collection/2908
+
+- UNICEF. (2016). Abuso sexual contra niños, niñas y adolescentes Una guía para tomar acciones y proteger sus derechos. https://repositorio.dpe.gob.ec/handle/39000/275
 
 
